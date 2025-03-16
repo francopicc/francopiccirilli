@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { Github, Linkedin, FileText, Mail, ExternalLink, Search, Moon, Sun } from "lucide-react"
 import SpotlightSearch from "@/components/Spotlight"
 import Image from "next/image"
+import ProjectsSection from "@/components/Projects"
 
 export default function Home() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -194,36 +195,7 @@ export default function Home() {
           className="space-y-6"
           id="projects"
         >
-          <h2 className="text-xl font-semibold">Projects</h2>
-          <div className="space-y-3">
-            {projects.map((project) => (
-              <motion.a
-                key={project.id}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`block ${isDarkMode ? "bg-[#1C1C1E]" : "bg-[#E8E8ED]"} rounded-xl p-4 transition-transform hover:scale-[1.02]`}
-              >
-                <div className="flex items-start gap-4">
-                  <div 
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
-                    style={{ backgroundColor: project.iconBg }}
-                  >
-                    <Image src={project.icon}  alt={project.name} width={24} height={24} className={project.className}/>
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex justify-between items-center">
-                      <h3 className="font-medium mt-1">{project.name}</h3>
-                      <ExternalLink size={16} className={`${isDarkMode ? "text-stone-400" : "text-stone-500"}`} />
-                    </div>
-                    <p className={`${isDarkMode ? "text-stone-400" : "text-stone-600"} text-sm -mt-0.5`}>
-                      {project.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.a>
-            ))}
-          </div>
+          <ProjectsSection isDarkMode={isDarkMode} />
         </motion.div>
 
         <motion.div
