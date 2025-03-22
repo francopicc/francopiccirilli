@@ -109,7 +109,7 @@ export default function Home() {
           className="flex gap-3"
         >
           <a 
-            href="/assets/piccirilli_franco_cv.pdf" 
+            href="/assets/PICCIRILLI_FRANCO_CV.pdf" 
             download 
             className={`flex items-center gap-2 px-4 py-2 rounded-full ${isDarkMode ? "bg-white text-black" : "bg-[#0A0A0A] text-white"} text-sm font-medium transition-transform hover:scale-105`}
           >
