@@ -10,6 +10,7 @@ import ProjectsSection from "@/components/Projects"
 export default function Home() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(true)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -108,14 +109,39 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.05 }}
           className="flex gap-3"
         >
-          <a 
-            href="/assets/PICCIRILLI_FRANCO_CV.pdf" 
-            download 
-            className={`flex items-center gap-2 px-4 py-2 rounded-full ${isDarkMode ? "bg-white text-black" : "bg-[#0A0A0A] text-white"} text-sm font-medium transition-transform hover:scale-105`}
-          >
-            <FileText size={16} />
-            Download CV
-          </a>
+            <div className="relative">
+            <button 
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full ${isDarkMode ? "bg-white text-black" : "bg-[#0A0A0A] text-white"} text-sm font-medium transition-transform hover:scale-105`}
+            >
+              <FileText size={16} />
+              Download CV
+            </button>
+            
+            {isDropdownOpen && (
+              <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className={`absolute top-12 left-0 p-1 rounded-lg ${isDarkMode ? "bg-[#1C1C1E]" : "bg-[#E8E8ED]"} min-w-[120px] shadow-lg`}
+              >
+              <a 
+                href="/assets/PICCIRILLI_FRANCO_CV_EN.pdf" 
+                download
+                className={`block px-3 py-2 rounded-md text-md md:text-sm ${isDarkMode ? "hover:bg-[#2C2C2E]" : "hover:bg-[#D8D8DD]"} transition-colors`}
+              >
+                English
+              </a>
+              <a 
+                href="/assets/PICCIRILLI_FRANCO_CV_ES.pdf" 
+                download
+                className={`block px-3 py-2 rounded-md text-md md:text-sm ${isDarkMode ? "hover:bg-[#2C2C2E]" : "hover:bg-[#D8D8DD]"} transition-colors`}
+              >
+                Spanish
+              </a>
+              </motion.div>
+            )}
+            </div>
           <a 
             href="https://linkedin.com/in/" 
             target="_blank" 
@@ -206,7 +232,7 @@ export default function Home() {
           id="education"
         >
           <h2 className="text-xl font-semibold">Education</h2>
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="space-y-1">
               <div className="flex justify-between">
                 <h3 className="font-medium">Information Systems Engineering</h3>
