@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Flame } from "lucide-react";
 import { motion } from "framer-motion";
 
 // Define types for project and screenshot
@@ -18,6 +18,8 @@ interface Project {
   link?: string;
   className?: string;
   screenshots: Screenshot[];
+  useLucideIcon?: boolean;
+  lucideIcon?: React.ComponentType<any>;
 }
 
 // Define the props for ProjectCard component
@@ -49,7 +51,11 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
             className="size-9 rounded-md flex items-center justify-center"
             style={{ backgroundColor: project.iconBg }}
           >
-            <Image src={project.icon} alt={project.name} width={24} height={24} className={project.className || ''} />
+            {project.useLucideIcon && project.lucideIcon ? (
+              <project.lucideIcon size={24} className={project.className || ''} />
+            ) : (
+              <Image src={project.icon} alt={project.name} width={24} height={24} className={project.className || ''} />
+            )}
           </div>
         </div>
 
@@ -124,6 +130,22 @@ interface ProjectsSectionProps {
 const ProjectsSection = ({ isDarkMode }: ProjectsSectionProps) => {
   // Sample data - replace with your actual projects
   const projects: Project[] = [
+    {
+      id: "flama",
+      name: "Flama",
+      description: "Flama centralises project, team and process management in one place. It enables planning, coordination and progress measurement with visual tools and automation. It helps organisations maintain clarity, control and efficiency at every stage.",
+      icon: "/assets/flama.svg",
+      iconBg: "#0E0E0E",
+      className: "text-white",
+      useLucideIcon: true,
+      lucideIcon: Flame,
+      screenshots: [
+        {
+          thumbnail: "/assets/projects/flama-1.webp",
+          fullImage: "/assets/projects/flama-1.webp"
+        },
+      ]
+    },
     {
       id: "naftas",
       name: "Naftas",

@@ -92,7 +92,7 @@ export default function Home() {
             className="space-y-2"
           >
             <h1 className="text-2xl font-medium -mb-2">Franco Piccirilli</h1>
-            <p className={`${isDarkMode ? "text-stone-500" : "text-stone-600"} font-medium text-sm`}>Software Engineer & Product Designer</p>
+            <p className={`${isDarkMode ? "text-stone-500" : "text-stone-600"} font-medium text-sm`}>Software Engineer</p>
           </motion.div>
           
           <button 
@@ -232,6 +232,44 @@ export default function Home() {
                 I implemented continuous improvements that optimised operational processes and business efficiency. 
                 The stack is based on React Native, with mySQL as the locally managed database.
               </p>
+              
+              {/* POS System Images */}
+              <div className="w-full flex items-center overflow-x-auto overflow-y-hidden pt-3 pb-4">
+                {[
+                  { thumbnail: "/assets/projects/atilio-pos-1.webp", fullImage: "/assets/projects/atilio-pos-1.webp" },
+                  { thumbnail: "/assets/projects/atilio-pos-2.webp", fullImage: "/assets/projects/atilio-pos-2.webp" },
+                  { thumbnail: "/assets/projects/atilio-pos-3.webp", fullImage: "/assets/projects/atilio-pos-3.webp" }
+                ].map((screenshot, index) => (
+                  <div key={index} className="group flex-shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const dialog = document.getElementById('pos-dialog') as HTMLDialogElement;
+                        const img = document.getElementById('pos-dialog-img') as HTMLImageElement;
+                        if (dialog && img) {
+                          img.src = screenshot.fullImage;
+                          dialog.showModal();
+                        }
+                      }}
+                      data-is-odd={index % 2 === 0}
+                      data-index={index}
+                      className={`block outline-none w-[200px] overflow-hidden flex-shrink-0 aspect-[1.66]
+                        rounded border ${isDarkMode ? "border-[#333333]" : "border-[#eeeeee]"}
+                        hover:shadow-[0px_3px_4px_rgba(0,_0,_0,_0.12)] transition-shadow shadow-[0px_1px_2px_rgba(0,_0,_0,_0.04)]
+                        data-[is-odd=true]:-rotate-[4deg] rotate-[4deg] data-[index=1]:-ml-[60px] data-[index=2]:-ml-[60px]
+                      `}
+                    >
+                      <Image
+                        width={200}
+                        height={120}
+                        className="object-cover h-full w-full"
+                        src={screenshot.thumbnail}
+                        alt={`POS System screenshot ${index + 1}`}
+                      />
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>
@@ -319,6 +357,25 @@ export default function Home() {
           </p>
         </motion.div>
       </div>
+
+      {/* POS System Image Dialog */}
+      <dialog id="pos-dialog" className="backdrop:bg-black/50 bg-transparent">
+        <div className="fixed inset-0 bg-black/25 z-50 grid place-content-center p-4" onClick={() => {
+          const dialog = document.getElementById('pos-dialog') as HTMLDialogElement;
+          dialog?.close();
+        }}>
+          <div className="w-full h-full grid place-content-center">
+            <Image
+              id="pos-dialog-img"
+              src=""
+              alt="POS System screenshot"
+              width={800}
+              height={600}
+              className="rounded-md object-contain max-w-[90vw] max-h-[90vh]"
+            />
+          </div>
+        </div>
+      </dialog>
     </main>
   )
 }
