@@ -228,7 +228,7 @@ export default function Home() {
               </div>
               <p className={`${isDarkMode ? "text-stone-300" : "text-stone-700"} leading-relaxed`}>
                 I developed and managed a complete POS system for a café, handling sales, inventory, and reports. 
-                I was responsible for the system's infrastructure, security, maintenance, and technical support. 
+                I was responsible for the system&apos;s infrastructure, security, maintenance, and technical support. 
                 I implemented continuous improvements that optimised operational processes and business efficiency. 
                 The stack is based on React Native, with mySQL as the locally managed database.
               </p>

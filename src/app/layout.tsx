@@ -6,7 +6,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Franco Piccirilli",
-  description: "Franco Piccirilli's Landing Page.",
+  description: "Franco Piccirilli&apos;s Landing Page.",
 };
 
 export default function RootLayout({
