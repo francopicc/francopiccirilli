@@ -10,7 +10,7 @@ import ProjectsSection from "@/components/Projects"
 export default function Home() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(true)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -34,6 +34,7 @@ export default function Home() {
     { id: "about", name: "About", section: "about" },
     { id: "skills", name: "Skills", section: "skills" },
     { id: "projects", name: "Projects", section: "projects" },
+    { id: "works", name: "Works", section: "works" },
     { id: "education", name: "Education", section: "education" },
     { id: "links", name: "Links", section: "links" },
     { id: "contact", name: "Contact", section: "contact" },
@@ -109,39 +110,14 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.05 }}
           className="flex gap-3"
         >
-            <div className="relative">
-            <button 
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full ${isDarkMode ? "bg-white text-black" : "bg-[#0A0A0A] text-white"} text-sm font-medium transition-transform hover:scale-105`}
-            >
-              <FileText size={16} />
-              Download CV
-            </button>
-            
-            {isDropdownOpen && (
-              <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className={`absolute top-12 left-0 p-1 rounded-lg ${isDarkMode ? "bg-[#1C1C1E]" : "bg-[#E8E8ED]"} min-w-[120px] shadow-lg`}
-              >
-              <a 
-                href="/assets/PICCIRILLI_FRANCO_CV_EN.pdf" 
-                download
-                className={`block px-3 py-2 rounded-md text-md md:text-sm ${isDarkMode ? "hover:bg-[#2C2C2E]" : "hover:bg-[#D8D8DD]"} transition-colors`}
-              >
-                English
-              </a>
-              <a 
-                href="/assets/PICCIRILLI_FRANCO_CV_ES.pdf" 
-                download
-                className={`block px-3 py-2 rounded-md text-md md:text-sm ${isDarkMode ? "hover:bg-[#2C2C2E]" : "hover:bg-[#D8D8DD]"} transition-colors`}
-              >
-                Spanish
-              </a>
-              </motion.div>
-            )}
-            </div>
+          <a
+            href="/assets/PICCIRILLI_FRANCO_CV.pdf"
+            download
+            className={`flex items-center gap-2 px-4 py-2 rounded-full ${isDarkMode ? "bg-white text-black" : "bg-[#0A0A0A] text-white"} text-sm font-medium transition-transform hover:scale-105`}
+          >
+            <FileText size={16} />
+            Download CV
+          </a>
           <a 
             href="https://linkedin.com/in/" 
             target="_blank" 
@@ -229,6 +205,42 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           className="space-y-4"
+          id="works"
+        >
+          <h2 className="text-xl font-semibold">Works</h2>
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <div className="flex justify-between">
+                <h3 className="font-medium">Programming Coordinator and Leader (Volunteer)</h3>
+                <span className={`${isDarkMode ? "text-stone-500" : "text-stone-600"} text-sm`}>Nov 2022 - Mar 2023</span>
+              </div>
+              <p className={`${isDarkMode ? "text-stone-300" : "text-stone-700"} leading-relaxed`}>
+                Developed a professional project for a university assignment, creating a travel management platform.
+                The project was completed in approximately 3-4 months, during which time I also learned new technologies included in the project stack.
+                The project used Django with Python and employed MySQL as the local database.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex justify-between">
+                <h3 className="font-medium">Systems Administrator (Freelancer)</h3>
+                <span className={`${isDarkMode ? "text-stone-500" : "text-stone-600"} text-sm`}>Jun 2025 -</span>
+              </div>
+              <p className={`${isDarkMode ? "text-stone-300" : "text-stone-700"} leading-relaxed`}>
+                I developed and managed a complete POS system for a café, handling sales, inventory, and reports. 
+                I was responsible for the system's infrastructure, security, maintenance, and technical support. 
+                I implemented continuous improvements that optimised operational processes and business efficiency. 
+                The stack is based on React Native, with mySQL as the locally managed database.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="space-y-4"
           id="education"
         >
           <h2 className="text-xl font-semibold">Education</h2>
@@ -272,7 +284,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
           className="space-y-4"
           id="links"
         >
@@ -298,7 +310,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
           className="pt-8 border-t border-gray-800"
           id="contact"
         >
